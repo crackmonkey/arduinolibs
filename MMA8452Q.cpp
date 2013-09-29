@@ -1,6 +1,55 @@
 /*
  * Arduino library for the MMA8452Q three-axis accelerometer.
  *
+ * The MMA8452Q is a tiny and low-power three-axis accelerometer. This
+ * library implements a simple interface to access most of the chip
+ * functionality from an Arduino.
+ *
+ * FEATURES:
+ *  + Normal and fast raw axes values reading
+ *  + Scale configuration (allowed 2g, 4g and 8g scales)
+ *  + Custom offset calibration
+ *  + Low noise mode
+ *  + Orientation detection (portrait/landscape and back/front)
+ *  + Auto-WAKE/SLEEP mode and detection
+ *
+ * GETTING STARTED:
+ *
+ *  #include <MMA8452Q.h>
+ *  #include <Wire.h> // so the Arduino IDE auto-detects the dependency
+ *
+ *  MMA8452Q accel;
+ *
+ *  int axes[3];
+ *
+ *  void setup() {
+ *    Serial.begin(9600);
+ *
+ *    if (accel.begin())
+ *      while (1); // error
+ *  }
+ *
+ *  void loop() {
+ *    // get and print raw axes values
+ *    accel.axes(axes);
+ *
+ *    Serial.print("x: ");
+ *    Serial.print(axes[0]);
+ *    Serial.print(", y: ");
+ *    Serial.print(axes[1]);
+ *    Serial.print(", z: ");
+ *    Serial.println(axes[2]);
+ *
+ *    delay(1000);
+ *  }
+ *
+ * TODO:
+ *  + Motion and freefall detection
+ *  + Single and double tap detection
+ *  + Interrupts configuration
+ *
+ * See MMA8452Q.h for the API documentation.
+ *
  * Copyright (c) 2013, Alessandro Ghedini
  * All rights reserved.
  *
